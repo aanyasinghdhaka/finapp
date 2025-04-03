@@ -1,0 +1,113 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+/* Container */
+.container {
+    background: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Form Elements */
+label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 10px;
+    display: block;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #bdc3c7;
+    font-size: 1rem;
+}
+
+select {
+    background-color: #ecf0f1;
+}
+
+/* Buttons */
+button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #219150;
+}
+
+/* Video & News Results */
+#results, #newsResults {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.video, .news {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    padding: 15px;
+    text-align: left;
+    transition: 0.3s ease-in-out;
+}
+
+.video:hover, .news:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.video img, .news img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.video p, .news p {
+    font-size: 1rem;
+    margin-top: 8px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #27ae60;
+}

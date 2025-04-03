@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 600px; margin: auto; text-align: left; }
+        input, select, button { width: 100%; padding: 10px; margin: 5px 0; }
+        button { cursor: pointer; background-color: #4CAF50; color: white; border: none; }
+        button:hover { background-color: #45a049; }
+        #results, #newsResults { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+        .video, .news { margin: 10px; width: 300px; text-align: left; }
+        .video img, .news img { width: 100%; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+    <h1>Financial Assistant</h1>
+
+    <!-- User Financial Information Form -->
+    <div class="container">
+        <h2>Get Personalized Finance Videos</h2>
+        <form id="financeForm">
+            <label>Marital Status:</label>
+            <select id="marriage">
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+            </select>
+
+            <label>Do you have children?</label>
+            <select id="children">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label>Age Group:</label>
+            <select id="age">
+                <option value="teens">Teenager (13-19)</option>
+                <option value="20s">20-29</option>
+                <option value="30s">30-39</option>
+                <option value="40s">40-49</option>
+                <option value="50s">50-59</option>
+                <option value="retirement">60+ (Retired)</option>
+            </select>
+
+            <label>Income Level:</label>
+            <select id="income">
+                <option value="low">Low</option>
+                <option value="middle">Middle</option>
+                <option value="high">High</option>
+            </select>
+
+            <label>Financial Knowledge Level:</label>
+            <select id="knowledge">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+
+            <label>Financial Goals:</label>
+            <select id="goal">
+                <option value="saving">Saving Money</option>
+                <option value="investing">Investing</option>
+                <option value="debt">Debt Management</option>
+                <option value="retirement">Retirement Planning</option>
+                <option value="tax">Tax Savings</option>
+            </select>
+
+            <label>Current Financial Concerns:</label>
+            <select id="concern">
+                <option value="none">None</option>
+                <option value="studentloans">Student Loans</option>
+                <option value="mortgage">Mortgage</option>
+                <option value="budgeting">Budgeting</option>
+                <option value="inflation">Inflation</option>
+                <option value="economiccrisis">Economic Crisis</option>
+            </select>
+
+            <button type="submit">Get Financial Advice</button>
+        </form>
+    </div>
+
+    <div id="results"></div>
+
+    <h2>Latest Financial News</h2>
+    <button onclick="fetchFinancialNews()">Fetch News</button>
+    <div id="newsResults"></div>
+
+    <script>
+        document.getElementById("financeForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let marriage = document.getElementById("marriage").value;
+            let children = document.getElementById("children").value;
+            let age = document.getElementById("age").value;
+            let income = document.getElementById("income").value;
+            let knowledge = document.getElementById("knowledge").value;
+            let goal = document.getElementById("goal").value;
+            let concern = document.getElementById("concern").value;
+
+            let query = "personal finance";
+
+            if (marriage === "married") query = "financial planning for couples";
+            if (marriage === "divorced") query = "financial advice after divorce";
+            if (marriage === "widowed") query = "financial planning for widows";
+            if (children === "yes") query = "saving for children's future";
+            if (age === "teens") query = "finance tips for teenagers";
+            if (income === "low") query = "how to save money with low income";
+            if (goal === "investing") query = "how to start investing";
+            if (concern === "studentloans") query = "how to pay off student loans fast";
+
+            searchYouTube(query);
+        });
+
+        async function searchYouTube(query) {
+            const YT_API_KEY = "AIzaSyDgrW-jeUrpfLYZjr3gH4paO-tqvFLc128";  // Replace with a secure backend API call!
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=5&key=${YT_API_KEY}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResults(data.items);
+            } catch (error) {
+                console.error("YouTube API Error:", error);
+            }
+        }
+
+        function displayResults(videos) {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+            videos.forEach(video => {
+                const videoElement = document.createElement("div");
+                videoElement.classList.add("video");
+                videoElement.innerHTML = `
+                    <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
+                        <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+                        <p>${video.snippet.title}</p>
+                    </a>`;
+                resultsDiv.appendChild(videoElement);
+            });
+        }
+
+        async function fetchFinancialNews() {
+            const newsApiKey = "e6ef91b11da3498b85eaf41692919ec6";  // Replace with a proper News API
+            const url = `https://newsapi.org/v2/everything?q=finance&sortBy=publishedAt&apiKey=${newsApiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayNews(data.articles);
+            } catch (error) {
+                console.error("News API Error:", error);
+                document.getElementById("newsResults").innerText = "Failed to load news.";
+            }
+        }
+
+        function displayNews(articles) {
+            const newsDiv = document.getElementById("newsResults");
+            newsDiv.innerHTML = "";
+
+            articles.slice(0, 5).forEach(article => {
+                const newsElement = document.createElement("div");
+                newsElement.classList.add("news");
+                newsElement.innerHTML = `
+                    <a href="${article.url}" target="_blank">
+                        <p><strong>${article.title}</strong></p>
+                        <p>${new Date(article.publishedAt).toDateString()}</p>
+                    </a>`;
+                newsDiv.appendChild(newsElement);
+            });
+        }
+    </script>
+
+</body>
+</html>
