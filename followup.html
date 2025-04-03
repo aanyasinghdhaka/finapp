@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Follow-Up Questions</title>
+  
+  <link rel="stylesheet" href="global.css">
+</head>
+<body class="bg-white text-purple-800 font-sans">
+  <div class="container mx-auto p-6">
+    <h1 class="text-5xl font-bold mb-8 text-center" style="color: purple;">Follow-Up Question</h1>
+
+    
+    {% if error %}
+      <p class="text-red-500 mb-6 text-center text-xl">{{ error }}</p>
+    {% endif %}
+    
+    <div class="bg-purple-50 border border-purple-200 p-6 rounded-lg shadow-lg mb-8 transform transition hover:scale-105">
+      <h2 class="text-3xl font-semibold mb-4 text-purple-600">Your Initial Advice</h2>
+      <div class="prose max-w-none">
+        {{ original_advice|safe }}
+      </div>
+    </div>
+    
+    <form action="/followup" method="post" class="max-w-xl mx-auto bg-white border border-purple-200 shadow-lg rounded-lg p-8 transform transition hover:scale-105">
+      <div class="mb-6">
+        <label for="email" class="block text-xl font-medium mb-2">Your Email:</label>
+        <input type="email" id="email" name="email" required class="w-full p-3 border border-purple-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+      </div>
+      
+      <div class="mb-6">
+        <label for="followup_question" class="block text-xl font-medium mb-2">Your Follow-Up Question:</label>
+        <textarea id="followup_question" name="followup_question" rows="4" required class="w-full p-3 border border-purple-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition"></textarea>
+      </div>
+      
+      <div class="text-center">
+        <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-105">
+          Submit Question
+        </button>
+      </div>
+    </form>
+    
+    {% if followup_response %}
+      <div class="bg-purple-50 border border-purple-200 p-6 rounded-lg shadow-lg mt-8 transform transition hover:scale-105">
+        <h2 class="text-3xl font-semibold mb-4 text-purple-600">Follow-Up Response</h2>
+        <div class="prose max-w-none">
+          {{ followup_response|safe }}
+        </div>
+      </div>
+    {% endif %}
+    
+    <div class="mt-8 text-center">
+      <a href="/" class="text-purple-600 hover:underline text-xl">Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

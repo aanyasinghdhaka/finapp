@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Future Simulation</title>
+  <!-- Link to your compiled Tailwind CSS file -->
+  <link rel="stylesheet" href="global.css">
+</head>
+<body class="bg-white text-purple-800 font-sans">
+  <div class="container mx-auto p-6">
+    <!-- Updated heading: larger size and explicit purple color -->
+    <h1 class="text-6xl font-bold mb-10 text-center" style="color: #7e22ce;">Dynamic Future Simulation</h1>
+    
+    <form action="/simulation" method="post" class="max-w-xl mx-auto bg-white border border-purple-200 shadow-2xl rounded-xl p-8 transform transition hover:scale-105">
+      <div class="mb-6">
+        <label for="current_savings" class="block text-xl font-medium mb-2">Current Savings (USD):</label>
+        <input type="number" id="current_savings" name="current_savings" required class="w-full p-3 border border-purple-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+      </div>
+      
+      <div class="mb-6">
+        <label for="monthly_contribution" class="block text-xl font-medium mb-2">Monthly Contribution (USD):</label>
+        <input type="number" id="monthly_contribution" name="monthly_contribution" required class="w-full p-3 border border-purple-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+      </div>
+      
+      <div class="mb-6">
+        <label for="annual_return" class="block text-xl font-medium mb-2">Expected Annual Return (%):</label>
+        <input type="number" step="0.1" id="annual_return" name="annual_return" required class="w-full p-3 border border-purple-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+      </div>
+      
+      <div class="mb-6">
+        <label for="years" class="block text-xl font-medium mb-2">Investment Horizon (Years):</label>
+        <input type="number" id="years" name="years" required class="w-full p-3 border border-purple-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+      </div>
+      
+      <div class="text-center">
+        <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-105">
+          Run Simulation
+        </button>
+      </div>
+    </form>
+    
+    {% if simulation_result %}
+      <div class="mt-8 bg-purple-50 border border-purple-200 p-6 rounded-xl shadow-lg transform transition hover:scale-105">
+        <h2 class="text-3xl font-semibold mb-4 text-purple-600">Simulation Result</h2>
+        <p class="text-xl">{{ simulation_result }}</p>
+      </div>
+    {% endif %}
+    
+    <div class="mt-8 text-center">
+      <a href="/" class="text-purple-600 hover:underline text-xl">Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

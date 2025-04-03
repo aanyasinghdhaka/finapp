@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance Chatbot</title>
+  <!-- Link to your compiled Tailwind CSS file -->
+  <link rel="stylesheet" href="global.css">
+
+</head>
+<body class="bg-white text-purple-800 font-sans">
+  <div class="container mx-auto p-6">
+    <h1 class="text-5xl font-bold mb-8 text-center text-purple-600 gradient-title">
+      Finance Chatbot
+    </h1>
+    
+    <div id="chatbox" class="border border-purple-200 p-6 h-96 overflow-y-scroll bg-white rounded-lg shadow-lg transform transition hover:scale-105">
+      <!-- Chat messages will appear here -->
+    </div>
+    
+    <div class="mt-6 flex flex-col items-center">
+      <input type="text" id="userInput" placeholder="Type your finance question here..." class="w-full max-w-lg p-4 border border-purple-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+      <button onclick="sendMessage()" class="mt-4 bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-105">
+        Send
+      </button>
+    </div>
+  </div>
+  
+  <script>
+    function addMessage(sender, text) {
+      const chatbox = document.getElementById('chatbox');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('mb-4', 'px-4', 'py-2', 'rounded-lg', 'shadow-sm');
+      
+      if (sender === 'user') {
+        messageDiv.classList.add('bg-purple-100', 'self-end');
+        messageDiv.innerHTML = `<strong class="text-purple-600">You:</strong> ${text}`;
+      } else {
+        messageDiv.classList.add('bg-purple-50', 'self-start');
+        messageDiv.innerHTML = `<strong class="text-green-600">Chatbot:</strong> ${text}`;
+      }
+      chatbox.appendChild(messageDiv);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+    
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value;
+      if (!message) return;
+      addMessage('user', message);
+      input.value = "";
+      
+      // Send message to backend (assuming a POST endpoint /chatbot)
+      const response = await fetch('/chatbot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+      });
+      const data = await response.json();
+      addMessage('bot', data.reply);
+    }
+  </script>
+</body>
+</html>

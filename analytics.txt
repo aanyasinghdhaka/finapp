@@ -1,0 +1,16 @@
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "12"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "12"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "2345"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "90"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "90"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "90"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "90"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "23"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "34"}}
+{"email": "monishakollipara13@gmail.com", "event": "initial_advice_generated", "details": {"ticker": "aapl", "investment_amount": "34"}}
